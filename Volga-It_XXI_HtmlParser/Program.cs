@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Volga_It_XXI_HtmlParser.Core;
 
 namespace Volga_It_XXI_HtmlParser
 {

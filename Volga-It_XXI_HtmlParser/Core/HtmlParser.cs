@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Volga_It_XXI_HtmlParser
+namespace Volga_It_XXI_HtmlParser.Core
 {
 	public static class HtmlParser
 	{

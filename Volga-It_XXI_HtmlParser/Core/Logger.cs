@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 
-namespace Volga_It_XXI_HtmlParser
+namespace Volga_It_XXI_HtmlParser.Core
 {
 	public static class Logger
 	{
