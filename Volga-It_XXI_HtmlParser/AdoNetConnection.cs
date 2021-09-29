@@ -5,6 +5,11 @@ namespace Volga_It_XXI_HtmlParser
 {
 	public class AdoNetConnection
 	{
+		/// <summary>
+		/// Отправить статистику в бд
+		/// </summary>
+		/// <param name="statistic">статистика</param>
+		/// <returns></returns>
 		public static bool SendStatistics(string statistic)
 		{
 			try

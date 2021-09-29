@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace Volga_It_XXI_HtmlParser.Core
 {
-	public static class HtmlParser
+	public class HtmlParser : IHtmlParser<string, int>
 	{
 		/// <summary>
 		/// Чтение html
@@ -24,7 +24,7 @@ namespace Volga_It_XXI_HtmlParser.Core
 		/// </summary>
 		/// <param name="url">Ссылка на HTML</param>
 		/// <returns>Массив слов</returns>
-		public static string[] SplitHtmlContent(string url)
+		public string[] SplitHtmlContent(string url)
 		{
 			char[] arraySplit = { ' ', ',', '.', '!', '?', '\"', ';', ':', '[', ']', '(', ')', '\n', '\r', '\t' };
 
@@ -34,38 +34,24 @@ namespace Volga_It_XXI_HtmlParser.Core
 		}
 
 		/// <summary>
-		/// Сортирует и считает слова
+		/// Получить отсортированный и посчитанный словарь, где key - слово, value - кол-во
 		/// </summary>
-		/// <param name="contentHtml">Разделенные слова из HTML</param>
-		/// <returns>Отсортированную и подсчитанную коллекцию</returns>
-		public static IOrderedEnumerable<KeyValuePair<string, int>> GetSortedDictionary(string[] contentHtml)
+		/// <param name="url">Ссылка на HTML</param>
+		/// <returns>отсортированный и посчитанный словарь, где key - слово, value - кол-во</returns>
+		public Dictionary<string, int> GetHtmlContent(string url)
 		{
 			Dictionary<string, int> words = new();
+			var contentHtml = SplitHtmlContent(url); //TODO: Подумать над переносом в параметры
 
-			foreach (var t in contentHtml)
+			foreach (var key in contentHtml)
 			{
-				if (words.ContainsKey(t))
+				if (!words.ContainsKey(key))
 				{
-					continue;
-				}
-				else
-				{
-					words.Add(t, 0);
+					words.Add(key, contentHtml.Count(x => x == key));
 				}
 			}
 
-			foreach (var t1 in contentHtml)
-			{
-				foreach (var t in contentHtml)
-				{
-					if (t1 == t)
-					{
-						words[t1] += 1;
-					}
-				}
-			}
-
-			return words.OrderByDescending(x => x.Value);
+			return words.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
 		}
 	}
 }

@@ -12,8 +12,8 @@ namespace Volga_It_XXI_HtmlParser
 			var response = Console.ReadLine();
 			if (File.Exists(response) && response.EndsWith(".html"))
 			{
-				var contentArray = HtmlParser.SplitHtmlContent(response);
-				var dic = HtmlParser.GetSortedDictionary(contentArray);
+				IHtmlParser<string, int> parser = new HtmlParser();
+				var dic = parser.GetHtmlContent(response);
 
 				Console.WriteLine("\nРезультат:");
 				string temp = default;
