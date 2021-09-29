@@ -12,14 +12,21 @@ namespace Volga_It_XXI_HtmlParser
 			var response = Console.ReadLine();
 			if (File.Exists(response) && response.EndsWith(".html"))
 			{
-				string[] contentArray = HtmlParser.SplitHtmlContent(Console.ReadLine());
+				var contentArray = HtmlParser.SplitHtmlContent(response);
 				var dic = HtmlParser.GetSortedDictionary(contentArray);
 
 				Console.WriteLine("\nРезультат:");
+				string temp = default;
 				foreach (var (key, value) in dic)
 				{
-					Console.WriteLine($"{key} - {value} раз");
+					temp += $"{key} - {value} раз\n";
 				}
+
+				Console.WriteLine(temp);
+
+				Console.WriteLine(AdoNetConnection.SendStatistics(temp)
+					? "Данные отправились в базу данных"
+					: "Произошла ошибка с подключением к бд.\nСм. log файл");
 			}
 			else
 			{

@@ -6,4 +6,8 @@
     <RootNamespace>Volga_It_XXI_HtmlParser</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="3.0.1" />
+  </ItemGroup>
+
 </Project>

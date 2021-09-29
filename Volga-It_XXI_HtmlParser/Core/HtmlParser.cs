@@ -37,7 +37,7 @@ namespace Volga_It_XXI_HtmlParser.Core
 		/// Сортирует и считает слова
 		/// </summary>
 		/// <param name="contentHtml">Разделенные слова из HTML</param>
-		/// <returns>Отсоритрованную и подсчитанную коллекцию</returns>
+		/// <returns>Отсортированную и подсчитанную коллекцию</returns>
 		public static IOrderedEnumerable<KeyValuePair<string, int>> GetSortedDictionary(string[] contentHtml)
 		{
 			Dictionary<string, int> words = new();
